@@ -1,0 +1,12 @@
+/* Amber accent — derived from Star Freight's gold brand palette */
+:root {
+  --sl-color-accent-low: #451a03;
+  --sl-color-accent: #d97706;
+  --sl-color-accent-high: #fbbf24;
+}
+
+/* Dark background aligned with site-theme */
+:root[data-theme='dark'] {
+  --sl-color-bg: #09090b;
+  --sl-color-hairline: #27272a;
+}

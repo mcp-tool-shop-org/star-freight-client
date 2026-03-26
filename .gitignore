@@ -12,3 +12,7 @@ desktop.ini
 *.swp
 *.swo
 *~
+site/.astro/
+site/dist/
+site/node_modules/
+.polyglot-cache.json
