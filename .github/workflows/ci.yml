@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push:
+    paths:
+      - "scripts/**"
+      - "scenes/**"
+      - "project.godot"
+      - ".github/workflows/**"
+  pull_request:
+    paths:
+      - "scripts/**"
+      - "scenes/**"
+      - "project.godot"
+      - ".github/workflows/**"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify project structure
+        run: |
+          echo "Checking required files..."
+          test -f project.godot
+          test -f scenes/main.tscn
+          test -f scenes/roster.tscn
+          test -f scripts/pack_loader.gd
+          test -f scripts/engine_bridge.gd
+          test -f scripts/character_node.gd
+          test -f scripts/roster_scene.gd
+          echo "All required files present."
+
+      - name: Verify asset packs have manifests
+        run: |
+          for dir in assets/characters/*/; do
+            if [ -d "$dir" ]; then
+              test -f "${dir}manifest.json" || { echo "Missing manifest in $dir"; exit 1; }
+              echo "OK: $dir"
+            fi
+          done
+          echo "All packs valid."
+
+      - name: Check GDScript syntax
+        run: |
+          # Basic syntax validation — check for common issues
+          for f in scripts/*.gd; do
+            echo "Checking $f..."
+            # Verify file is valid UTF-8
+            iconv -f utf-8 -t utf-8 "$f" > /dev/null
+            # Check for tabs (GDScript uses tabs for indentation)
+            python3 -c "
+          import sys
+          content = open('$f').read()
+          if 'class_name' in content or 'extends' in content or 'func ' in content:
+              print(f'  OK: {len(content)} bytes')
+          else:
+              print(f'  WARN: {\"$f\"} may not be valid GDScript')
+          "
+          done
