@@ -20,6 +20,13 @@ The client can also run standalone in visual-only mode, which loads and displays
 
 No Godot scripting experience is required to run the client. You only need Godot installed to open and play. The viewport is 960x640 pixels with nearest-neighbor texture filtering, giving sprites a crisp pixel-art look at any window size.
 
+## Prerequisites
+
+- **Godot 4.6.1** (standard build, not .NET) -- [download here](https://godotengine.org/download). This is the game engine that runs the client.
+- **Git** -- to clone the repository.
+- **Python 3.11+** (optional) -- only needed if you want the engine bridge to connect to the Star Freight game engine. Without Python, the client works in visual-only mode.
+- **Basic terminal skills** -- you will run a few commands to clone and import packs, but no scripting knowledge is required.
+
 ## Key concepts
 
 ### Sprite packs
@@ -120,3 +127,18 @@ Open `character_node.gd` and change the `sprite_scale` export variable (default 
 - Explore the [Security](/star-freight-client/handbook/security/) page to understand the trust model and data access scope.
 - Look at the [star-freight](https://github.com/mcp-tool-shop-org/star-freight) repo for the Python engine that drives game logic.
 - Look at the [star-freight-foundry](https://github.com/mcp-tool-shop-org/star-freight-foundry) repo if you want to generate new sprite packs.
+
+## Glossary
+
+| Term | Meaning |
+|------|---------|
+| **Albedo** | The base color texture of a sprite -- what you see without lighting effects. |
+| **Normal map** | A texture that encodes surface direction per pixel, allowing a 2D sprite to react to lights as if it had 3D depth. |
+| **Depth map** | A grayscale texture encoding distance from the viewer. Reserved for future parallax effects; loaded but not yet rendered. |
+| **CanvasTexture** | A Godot resource that combines a diffuse (albedo) texture with a normal texture so 2D lights affect the sprite. |
+| **Sprite pack** | A self-contained folder with albedo, normal, and depth PNGs for all 8 directions, plus a `manifest.json`. |
+| **JSON-RPC** | A lightweight protocol for sending method calls as JSON objects. The client uses JSON-RPC 2.0 over stdio to talk to the Python engine. |
+| **stdio** | Standard input/output -- the text streams every process has. The engine bridge writes requests to the Python process's stdin and reads responses from its stdout. |
+| **Foundry** | The Sprite Foundry pipeline that generates character sprite packs using ComfyUI and post-processing. |
+| **Visual-only mode** | The client's default state when no Python engine is connected. Packs load and render, but no game data is available. |
+| **Export contract** | The frozen specification (v1.0.0) that defines sprite pack structure: 48x48 pixels, 8 directions, 3 layers, SHA-256 checksums. |
