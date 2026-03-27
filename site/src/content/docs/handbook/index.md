@@ -26,8 +26,8 @@ star-freight-client/
 │   ├── pack_loader.gd      # Manifest → CanvasTexture pipeline
 │   ├── engine_bridge.gd    # JSON-RPC client (spawns Python subprocess)
 │   ├── character_node.gd   # Sprite2D with 8 directions
-│   ├── roster_scene.gd     # Crew display scene
-│   └── import_packs.py     # Pack import utility
+│   ├── roster_scene.gd     # Crew display scene + input handling
+│   └── import_packs.py     # Python utility — imports packs from foundry
 ├── scenes/
 │   ├── main.tscn           # Entry point (loads roster)
 │   └── roster.tscn         # Crew roster scene
@@ -39,4 +39,12 @@ star-freight-client/
 | Repo | Role |
 |------|------|
 | [star-freight](https://github.com/mcp-tool-shop-org/star-freight) | Python engine — game logic, RPC server |
-| [star-freight-foundry](https://github.com/mcp-tool-shop-org/star-freight-foundry) | Sprite generation pipeline — ComfyUI + Godot finish |
+| [star-freight-foundry](https://github.com/mcp-tool-shop-org/star-freight-foundry) | Sprite generation pipeline -- ComfyUI + Godot finish |
+
+## Quick Verification
+
+```bash
+bash verify.sh
+```
+
+Checks project structure, asset manifest validity, GDScript file integrity, and scene references. Run it after importing packs or editing scripts.

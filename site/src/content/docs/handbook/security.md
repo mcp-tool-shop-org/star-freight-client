@@ -27,7 +27,7 @@ The Star Freight Client is a **local-only desktop application**. It has no netwo
 
 ### Subprocess
 
-The client spawns `starfreight rpc` as a local child process. Communication happens exclusively over stdio (stdin/stdout) — no network sockets are opened. The child process exits when the client exits.
+The client spawns `python -m portlight.app.cli rpc` as a local child process. Communication happens exclusively over stdio (stdin/stdout) -- no network sockets are opened. The child process exits when the client exits. The `python_path` and `save_slot` are configurable exports on `EngineBridge`, but both default to safe local values (`"python"` and `"default"`).
 
 ## Reporting Vulnerabilities
 

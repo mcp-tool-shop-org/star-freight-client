@@ -28,7 +28,9 @@ The Python engine owns all game logic, save files, and state. The Godot client i
 
 ## Engine Bridge
 
-The bridge uses **JSON-RPC 2.0 over stdio**. Godot spawns `starfreight rpc` as a child process and exchanges newline-delimited JSON messages.
+The bridge uses **JSON-RPC 2.0 over stdio**. Godot spawns `python -m portlight.app.cli rpc` as a child process and exchanges newline-delimited JSON messages. (The Python package is still called `portlight`; the user-facing product name is Star Freight. A namespace migration may happen later.)
+
+`engine_bridge.gd` exposes a configurable `python_path` export (default `"python"`) and a `save_slot` export (default `"default"`). When a non-default save slot is used, the bridge passes `--save <slot>` before the module path.
 
 ### Why stdio?
 
@@ -36,6 +38,7 @@ The bridge uses **JSON-RPC 2.0 over stdio**. Godot spawns `starfreight rpc` as a
 - No port conflicts
 - Clean process lifecycle (child exits when parent exits)
 - Works everywhere Python runs
+- No firewall prompts on Windows
 
 ### RPC Methods
 
@@ -48,6 +51,13 @@ The bridge uses **JSON-RPC 2.0 over stdio**. Godot spawns `starfreight rpc` as a
 | `shutdown` | Clean engine shutdown |
 
 The RPC surface is intentionally minimal. Only methods the client actually needs are exposed. New methods are added when new scenes require them.
+
+### Connection modes
+
+The bridge supports two calling styles:
+
+- **`call_blocking(method, params)`** -- Synchronous. Launches a one-shot Python process, waits for the result, and returns. Used during init (e.g., the `ping` and `get_roster` calls when the user presses B).
+- **`send_request(method, params)`** -- Asynchronous. Writes to the persistent subprocess's stdin pipe. Responses arrive via the `response_received` signal. Suitable for in-game polling.
 
 ## Pack Loader
 
@@ -73,4 +83,15 @@ The pack loader reads `manifest.json`, validates the schema version, and builds 
 - 4x pixel scaling (48px → 192px display)
 - Name label below the sprite
 
-The node exposes `set_direction(name)`, `rotate_direction(offset)`, and `get_direction_name()` for scene scripts to control facing.
+The node exposes `set_direction(name)`, `rotate_direction(offset)`, and `get_direction_name()` for scene scripts to control facing. Direction wraps around: rotating past `front_right` returns to `front`.
+
+## Roster Scene
+
+`roster_scene.gd` ties everything together. On `_ready()` it:
+
+1. Auto-discovers all packs in `res://assets/characters/` via `PackLoader.discover_packs()`
+2. Creates a `CharacterNode` for each valid pack, spaced evenly across the 960px viewport
+3. Adds a `PointLight2D` above the characters so normal maps produce visible lighting
+4. Listens for keyboard input (A/D rotate, Tab select, Space rotate all, B bridge, Esc quit)
+
+The bridge connection is optional. Without the Python engine, the roster works in **visual-only mode** -- useful for testing sprite packs without a running game session.

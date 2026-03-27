@@ -33,7 +33,7 @@ star-freight (Python)          star-freight-client (Godot 4.6)
                                └──────────────────────────┘
 ```
 
-- **Engine bridge**: JSON-RPC 2.0 over stdio. Godot spawns `starfreight rpc` as a subprocess.
+- **Engine bridge**: JSON-RPC 2.0 over stdio. Godot spawns `python -m portlight.app.cli rpc` as a subprocess (the package remains `portlight` until namespace migration).
 - **Pack loader**: Reads manifest.json from imported sprite packs. Builds CanvasTextures (albedo + normal).
 - **Character node**: Sprite2D wrapper with 8-direction switching and normal map lighting.
 
@@ -46,7 +46,7 @@ star-freight (Python)          star-freight-client (Godot 4.6)
 ## Quick Start
 
 1. Open this project in Godot 4.6
-2. Press F5 to run — the roster scene loads 3 character packs
+2. Press F5 to run — the roster scene auto-discovers and loads all character packs in `assets/characters/`
 3. Controls:
    - **A/D** or arrow keys: rotate selected character facing
    - **Tab**: cycle through characters
@@ -59,8 +59,8 @@ star-freight (Python)          star-freight-client (Godot 4.6)
 Packs are vendored into `assets/characters/`. To import from the foundry:
 
 ```bash
-python scripts/import_packs.py                            # all 20 subjects
-python scripts/import_packs.py --subjects sera_vale,thal  # specific subjects
+python scripts/import_packs.py                                      # all 20 subjects
+python scripts/import_packs.py --subjects sera_vale,drift_maw       # specific subjects
 ```
 
 ## RPC Methods
@@ -98,9 +98,15 @@ This client operates **locally only**:
 - **Data NOT touched**: No cloud services, no user accounts, no network egress
 - **No telemetry** is collected or sent
 - **No secrets** are read, stored, or transmitted
-- **Subprocess**: Spawns `starfreight rpc` as a local child process via stdio only
+- **Subprocess**: Spawns `python -m portlight.app.cli rpc` as a local child process via stdio only
 
 See [SECURITY.md](SECURITY.md) for the full security policy.
+
+## Docs
+
+- [Landing page and handbook](https://mcp-tool-shop-org.github.io/star-freight-client/)
+- [CHANGELOG.md](CHANGELOG.md)
+- [SECURITY.md](SECURITY.md)
 
 ## License
 
