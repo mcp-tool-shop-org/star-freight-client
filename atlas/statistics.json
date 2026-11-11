@@ -107,8 +107,8 @@
     "definition": "commits is how many commits in the window touch the file, including merges and commits dropped from coupling. lines is added plus deleted in those commits.",
     "files": [
       {
-        "commits": 5,
-        "lines": 34,
+        "commits": 7,
+        "lines": 50,
         "path": ".github/workflows/ci.yml"
       },
       {
@@ -117,13 +117,38 @@
         "path": ".github/workflows/pages.yml"
       },
       {
+        "commits": 2,
+        "lines": 148,
+        "path": "atlas/README.md"
+      },
+      {
+        "commits": 2,
+        "lines": 52,
+        "path": "atlas/boundaries.yaml"
+      },
+      {
+        "commits": 2,
+        "lines": 320,
+        "path": "atlas/page.json"
+      },
+      {
+        "commits": 2,
+        "lines": 370,
+        "path": "atlas/statistics.json"
+      },
+      {
+        "commits": 2,
+        "lines": 3850,
+        "path": "atlas/structure.json"
+      },
+      {
         "commits": 1,
         "lines": 2,
         "path": "site/astro.config.mjs"
       },
       {
-        "commits": 1,
-        "lines": 4769,
+        "commits": 3,
+        "lines": 4781,
         "path": "site/package-lock.json"
       },
       {
@@ -135,15 +160,15 @@
   },
   "confidence": {
     "level": "low",
-    "reason": "fewer than 30 qualifying commits in the window, and fewer than 20 source files reach 10 revisions"
+    "reason": "fewer than 30 qualifying commits in the window, and fewer than 25 source files reach 10 revisions"
   },
-  "generatedAt": "2026-10-01T03:00:25.881Z",
+  "generatedAt": "2026-11-11T22:45:37.704Z",
   "generatedFrom": {
-    "commit": "659f5b35e720f3270e6a772fe7c70f6a7e6a0221"
+    "commit": "86e0ff032629bfe0785b070632f4d8fb33280cd8"
   },
   "pairs": [],
   "parameters": {
-    "appliedChangesetLimit": 29.5,
+    "appliedChangesetLimit": 30.5,
     "changeset": 50,
     "changesetFraction": 0.25,
     "cohesionDrop": 0.2,
@@ -152,16 +177,16 @@
     "floor": "fallen",
     "floorHeld": false,
     "floorTrigger": "both",
-    "headDate": "2026-09-30T19:26:41-07:00",
-    "inScopeFiles": 118,
+    "headDate": "2026-10-01T13:43:49-07:00",
+    "inScopeFiles": 122,
     "pinnedStart": null,
-    "priorFloor": null,
-    "qualifyingCommits": 4,
+    "priorFloor": "fallen",
+    "qualifyingCommits": 6,
     "qualifyingMinimum": 30,
     "revisions": 5,
     "shared": 10,
     "sharedFloorUsed": 3,
-    "since": "2026-04-04T02:26:41.000Z",
+    "since": "2026-04-04T20:43:49.000Z",
     "sourceExtensions": [
       ".js",
       ".mjs",
