@@ -1,14 +1,14 @@
 # star-freight-client: how it works
 
-Mapped at 2026-10-01 from commit 659f5b3 by Atlas 1.24.0.
+Mapped at 2026-11-11 from commit 86e0ff0 by Atlas 1.26.0.
 
 ## What this is
 
 6 parts, mostly images (74 files) and Markdown (18); code in GDScript (4), CSS (2), TypeScript (2), Astro (1), JavaScript (1), Python (1) and shell (1). Work enters through 3 doors; the busiest is the game, which reaches 2 parts. It deploys a site to GitHub Pages. People run the game.
 
-## What changed since the last map
+## What changed since 2026-10-01 (659f5b3)
 
-This is the first map.
+Nothing structural changed since 2026-10-01; 2 files changed content.
 
 ## What comes in
 
@@ -63,12 +63,14 @@ People write .github/, assets/, the repository root and site/. Nothing in this r
 
 ## Where to start
 
-the game runs no code this map can follow, so there is no path of files to read in order.
+scenes/main.tscn → scenes/roster.tscn → scripts/roster_scene.gd → scripts/character_node.gd → scripts/pack_loader.gd
+
+Read those in order to follow one run of the game end to end.
 
 ## What this map cannot see
 
 - 5 reads use paths built at run time and are not named here.
 - 2 reads go to a path their caller passes, not to this repository.
-- Statistics confidence is low: fewer than 30 qualifying commits in the window, and fewer than 20 source files reach 10 revisions.
+- Statistics confidence is low: fewer than 30 qualifying commits in the window, and fewer than 25 source files reach 10 revisions.
 
 Regenerate with `npx --yes @dogfood-lab/atlas map`.

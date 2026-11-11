@@ -18,14 +18,32 @@
     }
   ],
   "changes": {
-    "first": true
+    "fileCounts": {
+      "added": 0,
+      "changed": 2,
+      "moved": 0,
+      "parts": 2,
+      "removed": 0
+    },
+    "items": [
+      {
+        "kind": "counts",
+        "sentence": "Nothing structural changed since 2026-10-01; 2 files changed content.",
+        "subjects": []
+      }
+    ],
+    "since": {
+      "commit": "659f5b35e720f3270e6a772fe7c70f6a7e6a0221",
+      "generatedAt": "2026-10-01T03:00:25.881Z"
+    },
+    "unchanged": true
   },
   "changesTogether": [],
   "changesTogetherNote": [
     "Window: 180 days; a pair counts from 3 shared commits, since the window holds fewer than 30 qualifying commits."
   ],
   "changesTogetherWithTests": 0,
-  "commit": "659f5b35e720f3270e6a772fe7c70f6a7e6a0221",
+  "commit": "86e0ff032629bfe0785b070632f4d8fb33280cd8",
   "defaultBranch": "main",
   "derived": "6 parts, mostly images (74 files) and Markdown (18); code in GDScript (4), CSS (2), TypeScript (2), Astro (1), JavaScript (1), Python (1) and shell (1). Work enters through 3 doors; the busiest is the game, which reaches 2 parts. It deploys a site to GitHub Pages. People run the game.",
   "doors": [
@@ -118,13 +136,13 @@
   "duplicatesLead": null,
   "duplicatesNote": [],
   "edges": [],
-  "engine": "1.24.0",
+  "engine": "1.26.0",
   "generated": [],
-  "generatedAt": "2026-10-01T03:00:25.881Z",
+  "generatedAt": "2026-11-11T22:45:37.704Z",
   "limits": [
     "5 reads use paths built at run time and are not named here.",
     "2 reads go to a path their caller passes, not to this repository.",
-    "Statistics confidence is low: fewer than 30 qualifying commits in the window, and fewer than 20 source files reach 10 revisions."
+    "Statistics confidence is low: fewer than 30 qualifying commits in the window, and fewer than 25 source files reach 10 revisions."
   ],
   "mainDoor": "project.godot#the game",
   "partLabels": {
@@ -140,8 +158,13 @@
   "repo": "mcp-tool-shop-org/star-freight-client",
   "sequences": [],
   "startDoor": "project.godot#the game",
-  "startHere": [],
-  "startNote": "the game runs no code this map can follow, so there is no path of files to read in order.",
+  "startHere": [
+    "scenes/main.tscn",
+    "scenes/roster.tscn",
+    "scripts/roster_scene.gd",
+    "scripts/character_node.gd",
+    "scripts/pack_loader.gd"
+  ],
   "summary": null,
   "summaryFrom": null,
   "testFiles": 0,
